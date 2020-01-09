@@ -6,24 +6,21 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 def create_app():
     app = Flask(__name__)
 
-    @app.route("/predictor", method=["POST"])
-
+    @app.route("/predictor", methods=["POST"])
     def predictor():
-        from_backend = request.get_json(Force=True)
+        from_backend = request.get_json(force=True)
 
-        iidd = from_backend['id']
+        iidd = from_backend['comment_id']
         comment = from_backend['comment']
-        user_name = from_backend['user_name']
+        # user_name = from_backend['user_name']
 
-        model = load_model('baseline_model.h5')
-        vectorizer = pickle.load(open('tfidf.pickle'))
-        predictions = model.predict(vectorizer(comment))
+        model = load_model('API\\baseline_model.h5')
+        vectorizer = pickle.load(open('API\\tfidf.pickle', 'rb'))
+        predictions = model.predict(vectorizer.transform([comment]))
+        predictions = predictions.tolist()
 
-        answer = {'id': iidd, 'prediction': predictions}
-
-        
+        answer = {'id': iidd, 'prediction': predictions[0][0]}
 
         return jsonify(answer)
     
     return app
-
