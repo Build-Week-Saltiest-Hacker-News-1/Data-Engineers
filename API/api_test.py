@@ -13,7 +13,7 @@ if __name__ == '__main__':
     # Use the address below to ping the api you'be deployed locally.
     # You local address should look something like "127.0.0.1:5000".
     # url = 'http://<YOUR-LOCAL-ADDRESS-HERE>/predictor'
-    url = 'http://127.0.0.1:5000/predictor'
+    url = 'https://das-salt-mine.herokuapp.com/predictor'
 
     # This is a sample image url to send to the predictor api.
     comment = 'I love driving to work. It is fun being stuck in traffic watching my life waste away.'
