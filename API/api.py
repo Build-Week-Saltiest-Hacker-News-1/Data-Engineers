@@ -16,7 +16,7 @@ def create_app():
         from_backend = request.get_json(force=True)
 
         iidd = from_backend['comment_id']
-        comment = from_backend['comment']
+        comment = from_backend['SaltyComment']
         # user_name = from_backend['user_name']
 
         
@@ -26,7 +26,7 @@ def create_app():
         predictions = model.predict(vectorizer.transform([comment]).toarray())
         predictions = predictions.tolist()
 
-        answer = {'id': iidd, 'prediction': predictions[0][0]}
+        answer = {'comment_id': iidd, 'saltyRank': predictions[0][0]}
 
         return jsonify(answer)
     

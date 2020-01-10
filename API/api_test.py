@@ -20,7 +20,7 @@ if __name__ == '__main__':
 
     # The sample url (photo_url) and a dummy "photo_id"
     # will be sent to the api.
-    val = {'comment': comment, 'comment_id': 123456789}
+    val = {'saltyComment': comment, 'comment_id': 123456789}
     r_success = requests.post(url, data=json.dumps(val))
 
     # Print the response code and content of response if
