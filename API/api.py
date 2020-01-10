@@ -5,11 +5,11 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 import os
 
 
-model = load_model('./API/baseline_model_v2.h5')
-vectorizer = pickle.load(open('API\\tfidf_v2.pickle', 'rb'))
+
 
 def create_app():
     app = Flask(__name__)
+
 
     @app.route("/predictor", methods=["POST"])
     def predictor():
@@ -19,8 +19,9 @@ def create_app():
         comment = from_backend['comment']
         # user_name = from_backend['user_name']
 
-        # model = load_model('API\\base_model')
-        # vectorizer = pickle.load(open('API\\tfidf_v2.pickle', 'rb'))
+        model = load_model('./API/baseline_model_v2.h5')
+        vectorizer = pickle.load(open('API\\tfidf_v2.pickle', 'rb'))
+
         predictions = model.predict(vectorizer.transform([comment]).toarray())
         predictions = predictions.tolist()
 
