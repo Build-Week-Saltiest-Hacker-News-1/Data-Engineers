@@ -16,7 +16,7 @@ def create_app():
 
         model = load_model('API\\baseline_model_v2.h5')
         vectorizer = pickle.load(open('API\\tfidf_v2.pickle', 'rb'))
-        predictions = model.predict(vectorizer.transform([comment]))
+        predictions = model.predict(vectorizer.transform([comment]).toarray())
         predictions = predictions.tolist()
 
         answer = {'id': iidd, 'prediction': predictions[0][0]}
