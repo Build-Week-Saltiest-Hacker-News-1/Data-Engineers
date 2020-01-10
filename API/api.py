@@ -16,7 +16,7 @@ def create_app():
         from_backend = request.get_json(force=True)
 
         iidd = from_backend['comment_id']
-        comment = from_backend['SaltyComment']
+        comment = from_backend['saltyComment']
         # user_name = from_backend['user_name']
 
         
